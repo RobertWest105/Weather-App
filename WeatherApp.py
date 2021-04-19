@@ -4,7 +4,6 @@ import requests
 from PIL import Image, ImageTk
 from GetWeatherIcons import getWeatherIcons
 
-# e4463432d83bca00bbe2ebfcb4eb6f56
 # api.openweathermap.org/data/2.5/forecast?q={city name},{state code},{country code}&appid={your api key}
 
 root = tk.Tk()
@@ -24,17 +23,19 @@ def formatResponse(weather):
     return output
 
 def getWeather(city):
-    weatherKey = "e4463432d83bca00bbe2ebfcb4eb6f56"
-    url = "https://api.openweathermap.org/data/2.5/weather"
-    params = {"APPID": weatherKey, "q": city, "units": "metric"}
-    response = requests.get(url, params=params)
-    weather = response.json()
+    entry.delete(0, 'end')
+    if city:
+        weatherKey = "<Insert your OpenWeatherMap key here>"
+        url = "https://api.openweathermap.org/data/2.5/weather"
+        params = {"APPID": weatherKey, "q": city, "units": "metric"}
+        response = requests.get(url, params=params)
+        weather = response.json()
 
-    results["text"] = formatResponse(weather)
+        results["text"] = formatResponse(weather)
 
-    getWeatherIcons()
-    imageName = weather["weather"][0]["icon"]
-    openImage(imageName)
+        getWeatherIcons()
+        imageName = weather["weather"][0]["icon"]
+        openImage(imageName)
 
 def openImage(fileName):
     size = int(lowerFrame.winfo_height()*0.25)
@@ -54,6 +55,7 @@ frame = tk.Frame(root, bg="#85c2ff", bd=5)
 frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor="n")
 
 entry = tk.Entry(frame, font=("Courier", 18))
+entry.bind("<Return>", lambda x: getWeather(entry.get()))
 entry.place(relwidth=0.65, relheight=1)
 
 button = tk.Button(frame, text="Get Weather", bg="gray", fg="red", font=("Courier", 12), command=lambda: getWeather(entry.get()))
