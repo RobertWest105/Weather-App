@@ -10,12 +10,12 @@ def getWeatherIcons():
     if not os.path.exists(imgFolder):
         os.makedirs(imgFolder)
 
-    for name in day:
-        fileName = imgFolder + name
-        if not os.path.exists(fileName):
-            urllib.request.urlretrieve(baseURL + name, fileName)
+        for name in day:
+            fileName = imgFolder + name
+            if not os.path.exists(fileName):
+                urllib.request.urlretrieve(baseURL + name, fileName)
 
-    for name in night:
-        fileName = imgFolder + name
-        if not os.path.exists(fileName):
-            urllib.request.urlretrieve(baseURL + name, fileName)
+        for name in night:
+            fileName = imgFolder + name
+            if not os.path.exists(fileName):
+                urllib.request.urlretrieve(baseURL + name, fileName)

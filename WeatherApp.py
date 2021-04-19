@@ -46,9 +46,9 @@ def openImage(fileName):
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
-#backgroundImage = tk.PhotoImage(file="Combinatorics with Edgeworth.PNG")
-#backgroundLabel = tk.Label(root, image=backgroundImage)
-#backgroundLabel.place(x=0, y=0, relwidth=1, relheight=1)
+backgroundImage = ImageTk.PhotoImage(file="Background.jpg")
+backgroundLabel = tk.Label(root, image=backgroundImage)
+backgroundLabel.place(x=0, y=0, relwidth=1, relheight=1)
 
 frame = tk.Frame(root, bg="#85c2ff", bd=5)
 frame.place(relx=0.5, rely=0.1, relwidth=0.75, relheight=0.1, anchor="n")
